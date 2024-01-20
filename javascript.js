@@ -28,6 +28,7 @@ function getUserChoice() {
 
 function playRound() {
   let result
+  let roundWinner
   let computer = getComputerChoice();
   let user = getUserChoice();
   console.log("Computer chose " + computer)
@@ -60,10 +61,49 @@ function playRound() {
     }
   }
   console.log(result)
-  return result
-  //rock beats scissors
-  //scissors beat paper
-  //paper beats rock
+  
+  //create scores
+  if (result === "Computer wins") {
+    roundWinner = 0; 
+  }
+  else if (result === "User wins") {
+    roundWinner = 1;
+  }
+  else {
+    roundWinner = NaN //ties don't add to the score
+  }
+  return roundWinner
 }
 
-playRound()
+function game() {
+  let scoreArray = [0, 0] //[computerScore, userScore] 
+  for (let i = 0; i < 5; i++) {
+    winnerIndex = playRound();
+    scoreArray[winnerIndex] += 1;
+    console.log(scoreArray);
+    if (winnerIndex === 0) {
+      alert("Computer won this round, you suck.\nSCORE: Computer: " + scoreArray[0] + " User: " + scoreArray[1]);
+    }
+    else if (winnerIndex === 1) {
+      alert("You won this round.\n SCORE: Computer: " + scoreArray[0] + " User: " + scoreArray[1]);
+    }
+    else {
+      alert("This round was a tie, boring...\n SCORE: Computer " + scoreArray[0] + " User: " + scoreArray[1]);
+    }
+  } 
+  if (scoreArray[0] > scoreArray[1]) {
+    alert("Computer won, that's embarrasing")
+    return "Computer Wins"
+  }
+  else if (scoreArray[0] < scoreArray[1]) {
+    alert("You won, yay")
+    return "User Wins"
+  }
+  else {
+    alert("A tie...")
+    return "Tie"
+  }
+  
+}
+
+game()
