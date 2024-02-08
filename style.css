@@ -1,0 +1,45 @@
+#gameContainer {
+  border-style: solid;
+  margin: auto;
+  width: 30%;
+  height:400px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+#screen {
+  border-style: solid;
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  box-sizing: border-box;
+}
+
+#scores {
+  display: flex;
+  justify-content: space-around;
+  box-sizing: border-box;
+}
+
+#btnContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-style: solid;
+  height: 300px;
+  margin: 10px;
+  box-sizing: border-box;
+}
+
+#btnContainer button {
+  height: 50px;
+  width: 90%;
+  margin: 5px;
+}

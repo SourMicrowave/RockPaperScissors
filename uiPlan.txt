@@ -1,0 +1,10 @@
+- Play the game by clicking on buttons
+
+
+1. Remove logic for playing exactly five rounds?
+2. Three buttons: rock, paper, scissors.
+3. Event listener to the buttons that call playRound function 
+with the correct playerSelection every time a button is clicked.
+4. A div for displaying resutls and change console logs into DOM methods.
+5. Display running score.
+6. Announce a winner when one player reaches 5 points.
