@@ -6,8 +6,11 @@
 //MUST ACCOUNT FOR TIES
 //Function game() that plays best-of-five and keeps scores
 
-const choiceArray = ["rock", "paper", "scissors"]
 
+
+
+const choiceArray = ["rock", "paper", "scissors"]
+ 
 function getComputerChoice() {
   let choiceNum = Math.floor(Math.random()*3); // randomly choose 0, 1 or 2
   computerChoice = choiceArray[choiceNum];
@@ -15,22 +18,21 @@ function getComputerChoice() {
   return computerChoice
 }
 
-function getUserChoice() {
-  let userChoice = prompt("Please enter your choice of rock, paper, or scissors").toLowerCase();  //asks user to enter choice and makes it lowercase
-  while (!(userChoice === choiceArray[0] || userChoice === choiceArray[1] || userChoice === choiceArray[2])) {  //checks if choice is valid (by comparing to choice array)
-    userChoice = prompt("Invalid input. Please enter your choice of rock, paper, or scissors").toLowerCase(); // if choice is invalid asks for another input
-  }
-  //console.log(userChoice);
-  return userChoice
-  
-  
-}
 
-function playRound() {
+
+//event listener when a button is pressed
+//assign to userChoice?
+//call playRound()
+
+
+
+
+
+function playRound(userChoice) {
   let result
   let roundWinner
   let computer = getComputerChoice();
-  let user = getUserChoice();
+  let user = userChoice;
   console.log("Computer chose " + computer)
 
   if (computer === user) {
@@ -75,35 +77,72 @@ function playRound() {
   return roundWinner
 }
 
-function game() {
-  let scoreArray = [0, 0] //[computerScore, userScore] 
-  for (let i = 0; i < 5; i++) {
-    winnerIndex = playRound();
-    scoreArray[winnerIndex] += 1;
-    console.log(scoreArray);
-    if (winnerIndex === 0) {
-      alert("Computer won this round, you suck.\nSCORE: Computer: " + scoreArray[0] + " User: " + scoreArray[1]);
-    }
-    else if (winnerIndex === 1) {
-      alert("You won this round.\n SCORE: Computer: " + scoreArray[0] + " User: " + scoreArray[1]);
+
+
+
+const btns = document.querySelectorAll('.button');
+const uScore = document.querySelector('#uScore');
+const roundNum = document.querySelector('.roundCounter');
+const screen = document.querySelector('.scoreTitle')
+const message = document.querySelector('.message')
+let scoreArray = [0, 0]
+let roundCount = 0;
+let lossArray = ["Oof you lost that round", "What a terrible round for you", "Oh dear..."]
+let winArray = ["You won that round, you want a sticker?", "Damn that was hot", "#Whoop"]
+
+
+btns.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    let userChoice = btn.id;
+
+
+    if (scoreArray[0] === 5 || scoreArray[1] === 5) { //stops anything happening after a max score of 5
+      console.log("end2")
+      message.textContent = "Stop Touching Me!"
     }
     else {
-      alert("This round was a tie, boring...\n SCORE: Computer " + scoreArray[0] + " User: " + scoreArray[1]);
-    }
-  } 
-  if (scoreArray[0] > scoreArray[1]) {
-    alert("Computer won, that's embarrasing")
-    return "Computer Wins"
-  }
-  else if (scoreArray[0] < scoreArray[1]) {
-    alert("You won, yay")
-    return "User Wins"
-  }
-  else {
-    alert("A tie...")
-    return "Tie"
-  }
-  
-}
+      let winnerIndex = playRound(userChoice)
+      
+      //update round count
+      roundCount += 1;
+      roundNum.textContent = `Round ${roundCount}`
 
-game()
+      if (isNaN(winnerIndex)) { //checks if tie
+        console.log("tie");
+        message.textContent = "Its a tie!"
+      }
+      else {  //if not a tie, alters the score...
+        scoreArray[winnerIndex] += 1;
+        
+        if (winnerIndex === 0) {  //if computer wins
+          //IN FUTURE HAVE A FEW POSSIBLE MESSAGES THAT ARE RANDOMLY SELECTED
+          message.textContent = lossArray[Math.floor(Math.random()*3)]
+        }
+        else {  //if user wins
+          message.textContent = "You won that round, you want a sticker?"
+        }
+
+        uScore.textContent = scoreArray[1]  //the scoreArray is the wrong way round [computer, user], so swap it here
+        cScore.textContent = scoreArray[0]
+        
+        console.log(scoreArray)
+
+        //check if user won overall game
+        if (scoreArray[1] === 5) {
+          console.log("end")
+    
+          //Fill screen with Game Over or You Win!  .screen
+          screen.textContent = `You Win!`
+        
+        }
+        else if (scoreArray[0] === 5) {
+          screen.textContent = 'You Lose :('
+        }
+      }
+    }
+
+  })
+})
+
+
+

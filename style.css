@@ -1,33 +1,91 @@
-#gameContainer {
-  border-style: solid;
-  margin: auto;
-  width: 30%;
-  height:400px;
-  padding: 10px;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #2f333b;
+}
+
+.container {
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: space-between;
-  box-sizing: border-box;
 }
 
-#screen {
+.titles {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 400px;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+h2 {
+  font-size: 35px;
+}
+
+h3 {
+  font-size: 30px;
+}
+
+h1, h2, h3, p {
+  color: azure;
+}
+
+.box {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 100px;
+}
+
+.game {
+  border-style: solid;
+  margin: 0;
+  width: 30%;
+  height:400px;
+  padding: 10px;
+  display: flex;
+
+}
+
+.screen {
   border-style: solid;
   margin: 10px;
   padding: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  box-sizing: border-box;
 }
 
-#scores {
+
+
+
+
+
+.textBetween {
   display: flex;
   justify-content: space-around;
-  box-sizing: border-box;
 }
 
-#btnContainer {
+.scoreValue {
+  display: flex;
+  justify-content: space-around;
+}
+
+
+.btns{
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -35,11 +93,14 @@
   border-style: solid;
   height: 300px;
   margin: 10px;
-  box-sizing: border-box;
 }
 
-#btnContainer button {
+.btns button {
   height: 50px;
   width: 90%;
   margin: 5px;
+}
+
+.footer {
+
 }
