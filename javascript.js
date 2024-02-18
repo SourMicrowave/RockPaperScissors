@@ -7,6 +7,23 @@
 //Function game() that plays best-of-five and keeps scores
 
 
+const btns = document.querySelectorAll('.button');
+const uScore = document.querySelector('#uScore');
+const cScore = document.querySelector('#cScore');
+const roundNum = document.querySelector('.roundCounter');
+const message = document.querySelector('.message')
+const userScreen = document.querySelector('#userChoice')
+const compScreen = document.querySelector('#compChoice')
+const reset = document.querySelector('#reset')
+
+/*save original state*/
+const screenOrig = screen
+
+
+let scoreArray = [0, 0]
+let roundCount = 0;
+let lossArray = ["Oof you lost that round", "What a terrible round for you", "Oh dear...", "Deary me", "Gosh that was bad", "Loser", "Get good"]
+let winArray = ["You won that round, you want a sticker?", "Damn that was hot", "Whoop", "Are you cheating?", "Don't make me jealous", "OH WOW", "You are STUNNING"]
 
 
 const choiceArray = ["rock", "paper", "scissors"]
@@ -34,6 +51,9 @@ function playRound(userChoice) {
   let computer = getComputerChoice();
   let user = userChoice;
   console.log("Computer chose " + computer)
+
+  userScreen.textContent = userChoice
+  compScreen.textContent = computer
 
   if (computer === user) {
     result = "Tie";
@@ -79,20 +99,8 @@ function playRound(userChoice) {
 
 
 
-
-const btns = document.querySelectorAll('.button');
-const uScore = document.querySelector('#uScore');
-const roundNum = document.querySelector('.roundCounter');
-const screen = document.querySelector('.scoreTitle')
-const message = document.querySelector('.message')
-let scoreArray = [0, 0]
-let roundCount = 0;
-let lossArray = ["Oof you lost that round", "What a terrible round for you", "Oh dear..."]
-let winArray = ["You won that round, you want a sticker?", "Damn that was hot", "#Whoop"]
-
-
 btns.forEach((btn) => {
-  btn.addEventListener('click', () => {
+  btn.addEventListener("click", () => {
     let userChoice = btn.id;
 
 
@@ -115,11 +123,10 @@ btns.forEach((btn) => {
         scoreArray[winnerIndex] += 1;
         
         if (winnerIndex === 0) {  //if computer wins
-          //IN FUTURE HAVE A FEW POSSIBLE MESSAGES THAT ARE RANDOMLY SELECTED
-          message.textContent = lossArray[Math.floor(Math.random()*3)]
+          message.textContent = lossArray[Math.floor(Math.random()*7)]
         }
         else {  //if user wins
-          message.textContent = "You won that round, you want a sticker?"
+          message.textContent = winArrayArray[Math.floor(Math.random()*7)]
         }
 
         uScore.textContent = scoreArray[1]  //the scoreArray is the wrong way round [computer, user], so swap it here
@@ -131,12 +138,12 @@ btns.forEach((btn) => {
         if (scoreArray[1] === 5) {
           console.log("end")
     
-          //Fill screen with Game Over or You Win!  .screen
-          screen.textContent = `You Win!`
+          // Game Over or You Win! 
+          roundNum.textContent = `You Win!`
         
         }
         else if (scoreArray[0] === 5) {
-          screen.textContent = 'You Lose :('
+          roundNum.textContent = 'You Lose :('
         }
       }
     }
@@ -144,5 +151,15 @@ btns.forEach((btn) => {
   })
 })
 
+/*Reset Button*/
+
+reset.addEventListener("click", () => {
+  /*reset: scoreArray, uScore and cScore, roundNum */
+  uScore.textContent = 0
+  cScore.textContent = 0
+  roundNum.textContent = "First to score 5 wins!"
+  message.textContent = ''
+  scoreArray = [0,0]
+})
 
 
