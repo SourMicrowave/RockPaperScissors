@@ -126,7 +126,7 @@ btns.forEach((btn) => {
           message.textContent = lossArray[Math.floor(Math.random()*7)]
         }
         else {  //if user wins
-          message.textContent = winArrayArray[Math.floor(Math.random()*7)]
+          message.textContent = winArray[Math.floor(Math.random()*7)]
         }
 
         uScore.textContent = scoreArray[1]  //the scoreArray is the wrong way round [computer, user], so swap it here
