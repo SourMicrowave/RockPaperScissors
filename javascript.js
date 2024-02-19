@@ -154,12 +154,13 @@ btns.forEach((btn) => {
 /*Reset Button*/
 
 reset.addEventListener("click", () => {
-  /*reset: scoreArray, uScore and cScore, roundNum */
+  /*reset: scoreArray, uScore and cScore, roundNum, roundCount */
   uScore.textContent = 0
   cScore.textContent = 0
   roundNum.textContent = "First to score 5 wins!"
-  message.textContent = ''
+  message.textContent = 'Good Luck'
   scoreArray = [0,0]
+  roundCount = 0
 })
 
 
